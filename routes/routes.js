@@ -46,8 +46,8 @@ const {
     studentsDelete
 } = require("../controllers/controllers");
 
-router.get("/", middleware, getAllStudents);
-router.post("/",authenticateMiddleware, addStudents);
+router.get("/",  getAllStudents);
+router.post("/",middleware, addStudents);
 router.get("/user/:id", studentsById);
 router.get("/user/", studentsByParams);
 router.put("/users/replace/:id", studentsReplace);

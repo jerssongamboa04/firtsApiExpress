@@ -12,17 +12,17 @@ const getAllStudents = (req, res) => {
 //METODO POST
 
 const addStudents = (req, res) => {
-  const body = req.body;
+    const body = req.body;
 
-  if (Object.keys(body).length === 0) {
-    return res.status(400).json({ error: 'Missing student data' });
-  }
+    if (Object.keys(body).length === 0) {
+        return res.status(400).json({ error: 'Missing student data' });
+    }
 
-  const id = uuidv4();
-  const newStudent = { id, ...body };
-  Students.push(newStudent);
+    const id = uuidv4();
+    const newStudent = { id, ...body };
+    Students.push(newStudent);
 
-  res.json(newStudent);
+    res.json(newStudent);
 };
 
 module.exports = addStudents;
@@ -100,11 +100,10 @@ const studentsReplace = (req, res) => {
         major,
         gpa
     };
-
+    
     Students[studentIndex] = updatedStudent;
 
     res.json(updatedStudent);
-
 }
 
 //----------------- EJERCICIO #6 ---------------//
@@ -139,12 +138,8 @@ const studentsUpdate = (req, res) => {
 const studentsDelete = (req, res) => {
     const studentsId = req.params.id
 
-    const student = Students.filter((student) => student.student_id == studentsId);
-    if (student) {
-        res.json({ response: true, data: student });
-    } else {
-        res.json({ error: "No student with such id" });
-    }
+    Students = Students.filter((student) => student.student_id !== studentsId);
+    res.json({ response: true, data: Students });
 
 }
 
